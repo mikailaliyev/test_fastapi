@@ -9,4 +9,6 @@ pre {
   font-weight: bold;
   width: max-content;
   padding: 2rem;
+  margin-left: 2rem;
+  border-radius: 5px;
 }
