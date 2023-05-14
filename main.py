@@ -12,6 +12,6 @@ def form_post(request: Request):
     return templates.TemplateResponse('index.html', context={'request': request, 'result': result})
 
 
-@app.get("/random/{rand_number}")
+@app.get("/{rand_number}")
 async def get_random(rand_number):
     return random.randint(9, int(rand_number))
