@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import random
@@ -15,5 +15,8 @@ def form_post(request: Request):
 
 
 @app.get("/{rand_number}")
-async def get_random(rand_number):
-    return random.randint(0, int(rand_number))
+async def get_random(rand_number):    
+    if isinstance(int(rand_number), int) == False:
+        raise HTTPException(status_code=404, detail="Item not found")
+    else:
+        return random.randint(0, int(rand_number))
