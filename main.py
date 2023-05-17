@@ -16,7 +16,6 @@ def form_post(request: Request):
 
 @app.get("/{rand_number}")
 async def get_random(rand_number):    
-    if isinstance(int(rand_number), int) == False:
-        raise HTTPException(status_code=404, detail="Item not found")
-    else:
-        return random.randint(0, int(rand_number))
+    if rand_number.isnumeric() == False:
+        raise HTTPException(status_code=404, detail="You should enter only integers")
+    return random.randint(0, int(rand_number))
