@@ -17,7 +17,8 @@ def form_post(request: Request):
     result = "Type a number"
     return templates.TemplateResponse('index.html', context={'request': request, 'result': result})
 
-
 @app.get("/{rand_number}")
 async def get_random(rand_number):
+    if rand_number.isnumeric() == False:
+        raise HTTPException(status_code=404, detail="You should enter only integers")
     return random.randint(0, int(rand_number))
