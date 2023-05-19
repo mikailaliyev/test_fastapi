@@ -1,11 +1,11 @@
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import random
+import uvicorn
 
 if __name__ == "__main__":
-    uvicorn.run("test_fastapi:app", host="0.0.0.0", port=5000, log_level="info")
-
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -19,7 +19,5 @@ def form_post(request: Request):
 
 
 @app.get("/{rand_number}")
-async def get_random(rand_number):    
-    if rand_number.isnumeric() == False:
-        raise HTTPException(status_code=404, detail="You should enter only integers")
+async def get_random(rand_number):
     return random.randint(0, int(rand_number))
