@@ -3,6 +3,10 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import random
 
+if __name__ == "__main__":
+    uvicorn.run("test_fastapi:app", host="0.0.0.0", port=5000, log_level="info")
+
+
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
