@@ -21,5 +21,5 @@ def form_post(request: Request):
 @app.get("/{rand_number}")
 async def get_random(rand_number):  
   if rand_number.isnumeric() == False:
-    raise HTTPException(status_code=404, detail="You should enter only integers")
+    raise HTTPException(status_code=404, detail="You should enter only whole numbers")
   return random.randint(0, int(rand_number))
